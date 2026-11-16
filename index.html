@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AVRC | Advanced VLSI Research Center — MIST</title>
+<meta name="description" content="Advanced VLSI Research Center (AVRC), Department of EECE, Military Institute of Science and Technology (MIST), Dhaka. Research in VLSI circuits, semiconductor devices, wide bandgap transistors and low-power IC design.">
+<link rel="icon" id="fav" href="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#16244a; --navy-2:#1f3266; --ink:#0f1830; --text:#2b3550; --muted:#5f6a85;
+  --line:#e3e7f0; --bg:#f6f8fc; --white:#fff; --accent:#1aa39a; --accent-2:#e3a52b;
+  --radius:14px; --shadow:0 10px 30px -12px rgba(22,36,74,.25);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.65;font-size:16px}
+h1,h2,h3,h4{font-family:"Space Grotesk",sans-serif;color:var(--ink);line-height:1.2}
+a{color:var(--navy-2);text-decoration:none}
+a:hover{color:var(--accent)}
+img{max-width:100%;display:block}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+.mono{font-family:"JetBrains Mono",monospace}
+
+/* NAV */
+header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--ink);font-family:"Space Grotesk";font-weight:700;font-size:20px;letter-spacing:.5px}
+.brand img{width:44px;height:44px;border-radius:8px}
+.brand small{display:block;font-family:Inter;font-weight:500;font-size:11px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase}
+.links{display:flex;gap:4px;list-style:none}
+.links a{display:block;padding:8px 12px;border-radius:8px;font-size:14.5px;font-weight:500;color:var(--text)}
+.links a:hover{background:var(--bg);color:var(--navy)}
+.burger{display:none;background:none;border:0;cursor:pointer;padding:8px}
+.burger span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;border-radius:2px}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#0f1a38 0%,var(--navy) 55%,#1c3a6b 100%);color:#dfe6f7}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.55}
+.hero .wrap{position:relative;padding:110px 24px 120px;display:grid;grid-template-columns:1.3fr .7fr;gap:48px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:"JetBrains Mono";font-size:12.5px;letter-spacing:2px;text-transform:uppercase;color:#8fe3dc;border:1px solid rgba(143,227,220,.35);padding:6px 12px;border-radius:99px}
+.hero h1{color:#fff;font-size:clamp(36px,5.2vw,60px);margin:22px 0 18px;letter-spacing:-.5px}
+.hero h1 em{font-style:normal;color:#8fe3dc}
+.hero p.lead{font-size:18px;max-width:600px;color:#c6d0ea}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:10px;font-weight:600;font-size:15px;transition:.2s}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:#14877f;color:#fff}
+.btn-ghost{border:1px solid rgba(255,255,255,.3);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.08);color:#fff}
+.hero-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:28px;backdrop-filter:blur(6px)}
+.hero-card .logo{background:#fff;border-radius:16px;padding:14px;width:150px;margin:0 auto 22px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.stat{background:rgba(255,255,255,.05);border-radius:12px;padding:14px;text-align:center}
+.stat b{display:block;font-family:"Space Grotesk";font-size:28px;color:#fff}
+.stat span{font-size:12.5px;color:#aab6d4}
+
+/* SECTIONS */
+section{padding:96px 0}
+section.alt{background:var(--bg)}
+.sec-head{max-width:720px;margin-bottom:48px}
+.sec-head .tag{font-family:"JetBrains Mono";font-size:12.5px;letter-spacing:2px;color:var(--accent);text-transform:uppercase}
+.sec-head h2{font-size:clamp(28px,3.4vw,40px);margin:10px 0 12px}
+.sec-head p{color:var(--muted);font-size:17px}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start}
+.about-grid p{margin-bottom:16px}
+.pillars{display:grid;gap:14px}
+.pillar{display:flex;gap:14px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.pillar .ic{flex:none;width:42px;height:42px;border-radius:10px;background:#e7f6f5;color:var(--accent);display:grid;place-items:center;font-family:"JetBrains Mono";font-weight:600}
+.pillar h4{font-size:16px;margin-bottom:2px}
+.pillar p{font-size:14.5px;color:var(--muted);margin:0}
+
+/* RESEARCH AREAS */
+.areas{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.area{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:.25s;position:relative;overflow:hidden}
+.area:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:transparent}
+.area .num{font-family:"JetBrains Mono";font-size:12px;color:var(--accent);letter-spacing:1px}
+.area h3{font-size:19px;margin:10px 0 8px}
+.area p{font-size:14.5px;color:var(--muted)}
+.area .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chip{font-size:12px;padding:4px 10px;border-radius:99px;background:var(--bg);color:var(--navy-2);border:1px solid var(--line)}
+
+/* PROJECT */
+.project{display:grid;grid-template-columns:auto 1fr;gap:32px;background:linear-gradient(135deg,var(--navy),#22407a);color:#d8e0f3;border-radius:22px;padding:44px;box-shadow:var(--shadow)}
+.project .badge{width:110px;height:110px;border-radius:20px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;text-align:center;font-family:"Space Grotesk";color:#fff;font-weight:700;font-size:15px;line-height:1.25}
+.project .badge span{display:block;font-size:30px;color:var(--accent-2)}
+.project h3{color:#fff;font-size:24px;margin-bottom:10px}
+.project p{margin-bottom:12px}
+.project .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.project .meta div{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);padding:8px 14px;border-radius:10px;font-size:13.5px}
+.project .meta b{color:#fff}
+.ack{margin-top:22px;font-size:13.5px;color:#aab6d4;border-top:1px solid rgba(255,255,255,.14);padding-top:16px;font-style:italic}
+
+/* HEAD */
+.head-card{display:grid;grid-template-columns:300px 1fr;gap:44px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:40px;box-shadow:var(--shadow)}
+.head-photo{border-radius:18px;overflow:hidden;aspect-ratio:1;background:var(--bg)}
+.head-photo img{width:100%;height:100%;object-fit:cover}
+.head-side .links-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:7px 12px;border-radius:8px;background:var(--bg);border:1px solid var(--line)}
+.head-main .role{color:var(--accent);font-weight:600;font-size:14px;letter-spacing:1px;text-transform:uppercase}
+.head-main h3{font-size:30px;margin:6px 0 4px}
+.head-main .sub{color:var(--muted);margin-bottom:18px}
+.head-stats{display:flex;gap:28px;margin:22px 0;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.head-stats b{display:block;font-family:"Space Grotesk";font-size:26px;color:var(--navy)}
+.head-stats span{font-size:13px;color:var(--muted)}
+.edu{list-style:none;display:grid;gap:12px;margin-top:8px}
+.edu li{display:grid;grid-template-columns:110px 1fr;gap:12px;font-size:14.5px}
+.edu .yr{font-family:"JetBrains Mono";font-size:12.5px;color:var(--accent);padding-top:2px}
+.skills{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+
+/* TEAM */
+.team-group{margin-bottom:54px}
+.team-group h3{font-size:20px;margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.team-group h3::after{content:"";flex:1;height:1px;background:var(--line)}
+.team{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.member{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;text-align:center;transition:.25s}
+.member:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+.avatar{width:112px;height:112px;border-radius:50%;margin:0 auto 14px;overflow:hidden;background:linear-gradient(135deg,var(--navy),var(--accent));display:grid;place-items:center;color:#fff;font-family:"Space Grotesk";font-weight:700;font-size:34px;border:4px solid #fff;box-shadow:0 0 0 1px var(--line)}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.member h4{font-size:17px}
+.member .pos{font-size:13px;color:var(--accent);font-weight:600;margin:4px 0 8px}
+.member p{font-size:13.5px;color:var(--muted)}
+.member .rg{display:inline-block;margin-top:12px;font-size:13px;font-weight:600}
+.member.big{grid-column:span 1;text-align:left;display:grid;grid-template-columns:112px 1fr;gap:20px;align-items:start}
+.member.big .avatar{margin:0}
+.team.featured{grid-template-columns:repeat(auto-fill,minmax(440px,1fr))}
+.alumni{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.alum{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px}
+.alum .avatar{width:46px;height:46px;font-size:16px;margin:0;border-width:2px}
+.alum b{font-size:14px;color:var(--ink);display:block;line-height:1.3}
+.alum span{font-size:12px;color:var(--muted)}
+
+/* PUBLICATIONS */
+.pub-tools{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;align-items:center}
+.pub-tools input{flex:1;min-width:220px;padding:12px 16px;border-radius:10px;border:1px solid var(--line);font:inherit;font-size:15px;background:#fff}
+.pub-tools input:focus{outline:2px solid var(--accent);border-color:transparent}
+.fbtn{padding:9px 14px;border-radius:9px;border:1px solid var(--line);background:#fff;font:inherit;font-size:14px;cursor:pointer;color:var(--text)}
+.fbtn.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.pubs{display:grid;gap:12px}
+.pub{display:grid;grid-template-columns:72px 1fr;gap:18px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;transition:.2s}
+.pub:hover{border-color:var(--accent)}
+.pub .yr{font-family:"JetBrains Mono";font-weight:500;color:var(--navy);font-size:15px}
+.pub .type{display:block;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.pub h4{font-size:16px;font-family:Inter;font-weight:600;line-height:1.4}
+.pub h4 a{color:var(--ink)}
+.pub h4 a:hover{color:var(--accent)}
+.pub .auth{font-size:13.5px;color:var(--muted);margin-top:4px}
+.pub .auth .me{color:var(--navy-2);font-weight:600}
+.pub .venue{font-size:13.5px;color:var(--accent);font-style:italic;margin-top:2px}
+.pub-more{margin-top:24px;text-align:center}
+
+/* FUTURE */
+.future{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.fcard{display:flex;gap:18px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.fcard .n{flex:none;font-family:"Space Grotesk";font-weight:700;font-size:30px;color:var(--accent-2);line-height:1}
+.fcard h4{font-size:17px;margin-bottom:6px}
+.fcard p{font-size:14.5px;color:var(--muted)}
+
+/* FB / CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.cbox{background:#fff;border:1px solid var(--line);border-radius:18px;padding:32px}
+.cbox h3{font-size:22px;margin-bottom:12px}
+.cline{display:flex;gap:14px;padding:12px 0;border-bottom:1px dashed var(--line);font-size:15px}
+.cline:last-child{border:0}
+.cline .k{flex:none;width:90px;color:var(--muted);font-size:13px;font-family:"JetBrains Mono";padding-top:2px}
+.fb{background:linear-gradient(135deg,#1877f2,#0e5bc4);color:#e8f0ff;border:0}
+.fb h3{color:#fff}
+.fb .fbhead{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.fb .fbhead img{width:60px;height:60px;border-radius:50%;background:#fff;padding:3px}
+.fb .fbhead b{color:#fff;font-size:18px;display:block}
+.fb blockquote{background:rgba(255,255,255,.1);border-radius:12px;padding:16px;margin:16px 0;font-size:14.5px}
+.fb .btn{background:#fff;color:#1877f2}
+.fb .btn:hover{background:#e8f0ff;color:#1877f2}
+
+footer{background:var(--ink);color:#9aa6c4;padding:44px 0;font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:center}
+footer a{color:#cfd8ee}
+footer .brand{color:#fff}
+
+.reveal{opacity:0;transform:translateY(18px);transition:.7s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:960px){
+  .hero .wrap,.about-grid,.head-card,.contact-grid,.project{grid-template-columns:1fr}
+  .areas{grid-template-columns:1fr 1fr}
+  .future{grid-template-columns:1fr}
+  .team.featured{grid-template-columns:1fr}
+  .head-card{padding:28px}
+  .head-photo{max-width:280px}
+  .links{display:none;position:absolute;top:68px;left:0;right:0;background:#fff;flex-direction:column;padding:12px 24px;border-bottom:1px solid var(--line)}
+  .links.open{display:flex}
+  .burger{display:block}
+}
+@media (max-width:620px){
+  .areas{grid-template-columns:1fr}
+  .member.big{grid-template-columns:1fr;text-align:center}
+  .member.big .avatar{margin:0 auto}
+  .pub{grid-template-columns:1fr;gap:6px}
+  section{padding:72px 0}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="#home" class="brand"><img data-logo src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="AVRC logo"><div>AVRC<small>Advanced VLSI Research Center</small></div></a>
+    <button class="burger" aria-label="Menu" onclick="document.querySelector('.links').classList.toggle('open')"><span></span><span></span><span></span></button>
+    <ul class="links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#project">Project</a></li>
+      <li><a href="#head">Lab Head</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#future">Future</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home" style="padding:0">
+  <canvas id="traces"></canvas>
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">● EECE · MIST · Dhaka</span>
+      <h1>Advancing the Future of <em>VLSI</em> Research</h1>
+      <p class="lead">The Advanced VLSI Research Center (AVRC) at the Military Institute of Science and Technology explores innovation in semiconductors, integrated circuits and intelligent computing — from wide bandgap transistors to ultra-low-power circuits.</p>
+      <div class="cta">
+        <a href="#research" class="btn btn-primary">Explore our research →</a>
+        <a href="#publications" class="btn btn-ghost">Publications</a>
+        <a href="https://www.facebook.com/people/Advanced-VLSI-Research-Center/61596779030753/" target="_blank" rel="noopener" class="btn btn-ghost">Facebook</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="logo"><img data-logo src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="AVRC"></div>
+      <div class="stats">
+        <div class="stat"><b>68+</b><span>Publications by lab head</span></div>
+        <div class="stat"><b>280+</b><span>Citations</span></div>
+        <div class="stat"><b>15+</b><span>Researchers & students</span></div>
+        <div class="stat"><b>1</b><span>ICT Division funded project</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <div class="sec-head" style="margin-bottom:24px">
+        <span class="tag">// About the lab</span>
+        <h2>Silicon, devices and systems — designed in Bangladesh</h2>
+      </div>
+      <p>AVRC is a research group in the Department of Electrical, Electronic &amp; Communication Engineering (EECE) at the Military Institute of Science and Technology (MIST), Mirpur Cantonment, Dhaka. Founded and led by <b>Lt Col Md Tawfiq Amin, PhD</b>, the lab brings together faculty, research assistants and undergraduate thesis students around one goal: designing better transistors and circuits for next-generation communication, IoT and biomedical systems.</p>
+      <p>Our work spans the full stack of microelectronics — TCAD simulation of novel semiconductor devices, transistor-level analog/RF and digital circuit design in Cadence Virtuoso, and FPGA / hardware-security architectures. Students at AVRC publish in international journals and IEEE conferences, and many go on to graduate studies abroad.</p>
+      <p>Through our <b>“VLSI Research Insights”</b> series on Facebook, we also share accessible, educational content on VLSI fundamentals with the wider student community.</p>
+    </div>
+    <div class="pillars reveal">
+      <div class="pillar"><div class="ic">01</div><div><h4>Device innovation</h4><p>Wide bandgap (GaN, SiC) and emerging-material transistors via Silvaco ATLAS &amp; COMSOL.</p></div></div>
+      <div class="pillar"><div class="ic">02</div><div><h4>Circuit design</h4><p>Low-power, low-noise analog, RF, memory and digital circuits in 45–90 nm CMOS.</p></div></div>
+      <div class="pillar"><div class="ic">03</div><div><h4>Intelligent hardware</h4><p>In-memory computing, neuromorphic circuits, ML-assisted design and lightweight cryptography.</p></div></div>
+      <div class="pillar"><div class="ic">04</div><div><h4>Mentorship</h4><p>Hands-on research training for undergraduate thesis students and research assistants.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research" class="alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">// Research areas</span>
+      <h2>What we work on</h2>
+      <p>Six connected themes, from the physics of a single transistor to complete low-power systems.</p>
+    </div>
+    <div class="areas">
+      <div class="area reveal"><span class="num">AREA 01</span><h3>Wide Bandgap Devices</h3><p>AlGaN/GaN HEMTs and Si-on-SiC MOSFETs with engineered gates, high-κ stacks and back-barriers for high-power, high-frequency and thermally demanding applications.</p><div class="chips"><span class="chip">GaN HEMT</span><span class="chip">4H-SiC</span><span class="chip">Silvaco TCAD</span></div></div>
+      <div class="area reveal"><span class="num">AREA 02</span><h3>Analog &amp; RF ICs</h3><p>Ring and current-starved VCOs, charge pumps, quadrature clock generators, LDO regulators and UWB transmitters for wireless and biomedical systems.</p><div class="chips"><span class="chip">VCO</span><span class="chip">PLL / CDR</span><span class="chip">LDO</span></div></div>
+      <div class="area reveal"><span class="num">AREA 03</span><h3>Low-Power Digital VLSI</h3><p>MTCMOS power gating, LECTOR, GDI and transmission-gate logic for adders, ALUs, multiplexers and configurable logic blocks.</p><div class="chips"><span class="chip">MTCMOS</span><span class="chip">ALU</span><span class="chip">Full adders</span></div></div>
+      <div class="area reveal"><span class="num">AREA 04</span><h3>Memory &amp; In-Memory Computing</h3><p>Highly stable, low-leakage SRAM cells (6T–10T) and SRAM-based Boolean in-memory computing for data-intensive workloads.</p><div class="chips"><span class="chip">10T SRAM</span><span class="chip">SNM</span><span class="chip">IMC</span></div></div>
+      <div class="area reveal"><span class="num">AREA 05</span><h3>Emerging &amp; Neuromorphic</h3><p>Memristor-CMOS logic, spiking-neuron (LIF/STDP) circuits, graphene and MoS₂ FETs, TFETs and oxide TFTs.</p><div class="chips"><span class="chip">Memristor</span><span class="chip">SNN</span><span class="chip">2D materials</span></div></div>
+      <div class="area reveal"><span class="num">AREA 06</span><h3>Hardware Security &amp; ML for EDA</h3><p>Compact AES-128 architectures on FPGA, and machine-learning-assisted power–delay optimization and circuit analysis.</p><div class="chips"><span class="chip">AES</span><span class="chip">FPGA</span><span class="chip">ML-EDA</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT -->
+<section id="project">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">// Funded project</span>
+      <h2>Current research project</h2>
+    </div>
+    <div class="project reveal">
+      <div class="badge"><div><span>ICT</span>Division<br>Grant</div></div>
+      <div>
+        <h3>Wide Bandgap Semiconductor Based Transistor Design and Optimization for Next-Generation Communication Systems</h3>
+        <p>This project investigates GaN- and SiC-based transistor architectures — including field-plate-free AlGaN/GaN HEMTs with AlN spacers and relocated back-barriers, and Si-on-SiC MOSFETs with dual-metal gates and dual high-κ dielectrics — to raise breakdown voltage, current drive and thermal robustness for 5G/6G and high-frequency communication hardware.</p>
+        <div class="meta">
+          <div>Funding: <b>ICT Division, MoPTIT, Govt. of Bangladesh</b></div>
+          <div>Scheme: <b>Special Research Grant, FY 2025–2026 (2nd phase)</b></div>
+          <div>Code: <b class="mono">1280101-120008431-3631107</b></div>
+          <div>PI: <b>Lt Col Md Tawfiq Amin, PhD</b></div>
+        </div>
+        <p class="ack">“This work was supported by the ICT Division, Ministry of Posts, Telecommunications and Information Technology, Government of the People’s Republic of Bangladesh, under the Special Research Grant for FY 2025–2026, 2nd phase (Code No.-1280101-120008431-3631107), for the project ‘Wide Bandgap Semiconductor Based Transistor Design and Optimization for Next-Generation Communication Systems’. The authors thank the Military Institute of Science and Technology (MIST) for collaboration, research facilities and technical support.”</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HEAD -->
+<section id="head" class="alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">// Lab head &amp; founder</span>
+      <h2>Leadership</h2>
+    </div>
+    <div class="head-card reveal">
+      <div class="head-side">
+        <div class="head-photo"><img src="https://i1.rgstatic.net/ii/profile.image/983559674277889-1611510308610_Q512/Mdtawfiq-Amin-2.jpg" alt="Lt Col Md Tawfiq Amin" onerror="this.parentNode.innerHTML='<div class=avatar style=width:100%;height:100%;border-radius:0;font-size:80px>TA</div>'"></div>
+        <div class="links-row">
+          <a class="pill" href="https://www.researchgate.net/profile/Mdtawfiq-Amin-2" target="_blank" rel="noopener">ResearchGate ↗</a>
+          <a class="pill" href="https://mist.ac.bd/department/electrical_electronic_and_communication_engineering/faculty-members/lt-col-md-tawfiq-amin-phd-eme" target="_blank" rel="noopener">MIST profile ↗</a>
+          <a class="pill" href="https://www.researchgate.net/lab/Advanced-VLSI-Research-Centre-AVRC-MdTawfiq-Amin" target="_blank" rel="noopener">Lab on RG ↗</a>
+        </div>
+      </div>
+      <div class="head-main">
+        <span class="role">Founder &amp; Head, AVRC</span>
+        <h3>Lt Col Md Tawfiq Amin, PhD, EME</h3>
+        <p class="sub">Associate Professor, Department of EECE, Military Institute of Science and Technology (MIST), Dhaka</p>
+        <p>Dr. Md Tawfiq Amin received his Ph.D. from the University of Macau, Macao SAR, China, in Microelectronics (Wireless research line) under the State Key Laboratory of Analog and Mixed-Signal VLSI. He earned his B.Sc. (with highest honors) in Electrical and Electronic Engineering from KUET, Khulna, in 2005, and an M.Phil. in Electronic Engineering from City University of Hong Kong in 2009. He served as a Lecturer in the Department of EEE, KUET (2005–2006), and has been a faculty member of the EECE Department at MIST since 2015.</p>
+        <p style="margin-top:12px">His research focuses on low-power, low-noise and low-area analog and RF integrated circuit design for wireless applications, together with semiconductor device modeling and low-power VLSI.</p>
+        <div class="head-stats">
+          <div><b>68</b><span>Publications</span></div>
+          <div><b>283</b><span>Citations</span></div>
+          <div><b>16.8k</b><span>Reads</span></div>
+        </div>
+        <h4 style="font-size:16px">Education</h4>
+        <ul class="edu">
+          <li><span class="yr">2009 – 2015</span><span><b>PhD</b>, Analog &amp; Mixed-Signal VLSI — University of Macau</span></li>
+          <li><span class="yr">2006 – 2008</span><span><b>M.Phil.</b>, Electronic Engineering (Signal Processing) — City University of Hong Kong</span></li>
+          <li><span class="yr">2001 – 2005</span><span><b>B.Sc.</b>, Electrical &amp; Electronic Engineering (highest honors) — KUET</span></li>
+        </ul>
+        <div class="skills">
+          <span class="chip">Analog / RF IC Design</span><span class="chip">CMOS</span><span class="chip">Microelectronics</span><span class="chip">Cadence</span><span class="chip">Wireless Communications</span><span class="chip">Semiconductor Device Modeling</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">// People</span>
+      <h2>Our team</h2>
+      <p>Researchers, research assistants and students who make AVRC.</p>
+    </div>
+
+    <div class="team-group reveal">
+      <h3>Co-Founder &amp; Research Assistants</h3>
+      <div class="team featured">
+        <div class="member big">
+          <div class="avatar" data-i="MI"><img src="https://i1.rgstatic.net/ii/profile.image/11431281641031751-1758295684183_Q512/Md-Mozahidul-Islam-7.jpg" alt="Md. Mozahidul Islam"></div>
+          <div>
+            <h4>Md. Mozahidul Islam</h4>
+            <div class="pos">Co-Founder · Research Assistant</div>
+            <p>Research Assistant on the ICT Division wide bandgap project and M.Sc. (EEE) student at MIST; B.Sc. in EECE, MIST (2022–2026). Works on VLSI design, semiconductor device modeling (TCAD/COMSOL), FPGA systems and machine learning for electronics. Founding member of the IEEE MIST EDS Student Branch Chapter.</p>
+            <a class="rg" href="https://www.researchgate.net/profile/Md-Mozahidul-Islam-7" target="_blank" rel="noopener">ResearchGate ↗</a>
+          </div>
+        </div>
+        <div class="member big">
+          <div class="avatar" data-i="FZ"><img src="https://i1.rgstatic.net/ii/profile.image/11431282415528011-1790061289960_Q512/Fariha-Zaman-7.jpg" alt="Fariha Zaman"></div>
+          <div>
+            <h4>Fariha Zaman</h4>
+            <div class="pos">Research Assistant</div>
+            <p>Research Assistant, Department of EECE, MIST. First author of the Si-on-SiC dual-metal-gate MOSFET work (<i>Next Materials</i>, 2026) and co-author on low-power 10T SRAM, multiband ring VCO and gate-stack-engineered TFET research.</p>
+            <a class="rg" href="https://www.researchgate.net/profile/Fariha-Zaman-7" target="_blank" rel="noopener">ResearchGate ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-group reveal">
+      <h3>Undergraduate Thesis Students (current)</h3>
+      <div class="team">
+        <div class="member">
+          <div class="avatar" data-i="MK"><img src="https://i1.rgstatic.net/ii/profile.image/11431282496957854-1793466432709_Q512/Md-Mahfuzur-Kabbo.jpg" alt="Md. Mahfuzur Rahman Kabbo"></div>
+          <h4>Md. Mahfuzur Rahman Kabbo</h4>
+          <div class="pos">Undergraduate Thesis Student, EECE</div>
+          <p>Topology-aware HVT MTCMOS power gating for cascaded transmission-gate MUX/DEMUX (<i>Discover Electronics</i>, 2026).</p>
+          <a class="rg" href="https://www.researchgate.net/profile/Md-Mahfuzur-Kabbo" target="_blank" rel="noopener">ResearchGate ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-group reveal">
+      <h3>Alumni &amp; Former Undergraduate Researchers</h3>
+      <div class="alumni" id="alumni"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications" class="alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">// Publications</span>
+      <h2>Selected publications</h2>
+      <p>Recent journal articles and conference papers from AVRC. Names of lab members are highlighted.</p>
+    </div>
+    <div class="pub-tools">
+      <input id="q" type="search" placeholder="Search title, author or venue…">
+      <button class="fbtn on" data-f="all">All</button>
+      <button class="fbtn" data-f="Article">Journal</button>
+      <button class="fbtn" data-f="Conference Paper">Conference</button>
+      <button class="fbtn" data-f="Preprint">Preprint</button>
+    </div>
+    <div class="pubs" id="pubs"></div>
+    <div class="pub-more"><a class="btn btn-primary" href="https://www.researchgate.net/profile/Mdtawfiq-Amin-2" target="_blank" rel="noopener">Full list on ResearchGate ↗</a></div>
+  </div>
+</section>
+
+<!-- FUTURE -->
+<section id="future">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">// Future directions</span>
+      <h2>Where we are heading</h2>
+      <p>Building on our current work, AVRC aims to grow along these directions over the coming years.</p>
+    </div>
+    <div class="future">
+      <div class="fcard reveal"><div class="n">01</div><div><h4>GaN &amp; SiC for 5G/6G front-ends</h4><p>Moving from device-level TCAD to RF power amplifiers and switches built on our optimized HEMT and Si-on-SiC structures, with thermal and reliability co-design.</p></div></div>
+      <div class="fcard reveal"><div class="n">02</div><div><h4>Compute-in-memory accelerators</h4><p>Scaling multi-function SRAM in-memory computing cells into arrays and macros for edge-AI and IoT inference.</p></div></div>
+      <div class="fcard reveal"><div class="n">03</div><div><h4>AI-driven circuit &amp; device design</h4><p>Machine-learning surrogate models and optimization loops that cut simulation time for power–delay–area trade-offs.</p></div></div>
+      <div class="fcard reveal"><div class="n">04</div><div><h4>Biomedical &amp; IoT SoC blocks</h4><p>Ultra-low-power oscillators, regulators and transceivers for implants, wearables and RFID — toward complete sensor front-ends.</p></div></div>
+      <div class="fcard reveal"><div class="n">05</div><div><h4>Neuromorphic &amp; beyond-CMOS</h4><p>Memristive synapses, spiking neurons and 2D-material (MoS₂, ferroelectric HZO) transistors for energy-efficient computing.</p></div></div>
+      <div class="fcard reveal"><div class="n">06</div><div><h4>Layout, tape-out &amp; collaboration</h4><p>Post-layout verification and MPW tape-out of selected designs, and stronger partnerships with industry and universities at home and abroad.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">// Get in touch</span>
+      <h2>Contact &amp; join us</h2>
+      <p>Interested MIST undergraduates looking for a thesis group, and collaborators from academia and industry, are welcome to reach out.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="cbox reveal">
+        <h3>Advanced VLSI Research Center</h3>
+        <div class="cline"><span class="k">ADDRESS</span><span>Department of EECE, Military Institute of Science and Technology (MIST), Mirpur Cantonment, Dhaka-1216, Bangladesh</span></div>
+        <div class="cline"><span class="k">EMAIL</span><span><a href="mailto:avrcmist@gmail.com">avrcmist@gmail.com</a></span></div>
+        <div class="cline"><span class="k">LAB HEAD</span><span>Lt Col Md Tawfiq Amin, PhD</span></div>
+        <div class="cline"><span class="k">ONLINE</span><span><a href="https://www.researchgate.net/lab/Advanced-VLSI-Research-Centre-AVRC-MdTawfiq-Amin" target="_blank" rel="noopener">ResearchGate lab</a> · <a href="https://www.facebook.com/people/Advanced-VLSI-Research-Center/61596779030753/" target="_blank" rel="noopener">Facebook</a></span></div>
+      </div>
+      <div class="cbox fb reveal">
+        <div class="fbhead"><img data-logo src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt=""><div><b>Advanced VLSI Research Center</b><span>Science, technology &amp; engineering · Dhaka</span></div></div>
+        <p>Follow us on Facebook for lab news, publications and our <b>“VLSI Research Insights”</b> educational series — starting with Issue 01: <i>Digital CMOS Fundamentals — How does a CMOS inverter work?</i></p>
+        <blockquote>Advancing the Future of VLSI Research — exploring innovation in semiconductors, integrated circuits, and intelligent computing.</blockquote>
+        <a class="btn" href="https://www.facebook.com/people/Advanced-VLSI-Research-Center/61596779030753/" target="_blank" rel="noopener">Visit our Facebook page ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="#home" class="brand"><img data-logo src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="" style="width:36px;height:36px;border-radius:6px">AVRC · MIST</a>
+    <div>© <span id="y"></span> Advanced VLSI Research Center, Department of EECE, MIST. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+const LOGO="data:image/jpeg;base64,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";
+document.querySelectorAll("img[data-logo]").forEach(i=>i.src=LOGO);document.getElementById("fav").href=LOGO;
+// ---------- DATA ----------
+const LAB = ["Md.Tawfiq Amin","Md. Mozahidul Islam","Fariha Zaman","Md. Mahfuzur Rahman Kabbo"];
+const RG = "https://www.researchgate.net/publication/";
+const PUBS = [
+ {y:2026,t:"Article",title:"Topology-aware HVT MTCMOS power gating for power–delay optimization of cascaded transmission-gate MUX and DEMUX",a:"Md. Mahfuzur Rahman Kabbo, Md.Tawfiq Amin",v:"Discover Electronics",id:"416602353_Topology-aware_HVT_MTCMOS_power_gating_for_power-delay_optimization_of_cascaded_transmission-gate_MUX_and_DEMUX"},
+ {y:2026,t:"Article",title:"Control optimized AES-128 cryptographic architectures achieving 94.2% logic reduction and 50% power savings",a:"M. Mehedi Hasan, Raisa Ahmed, Md.Tawfiq Amin, Md. Mozahidul Islam",v:"Discover Electronics",id:"415216806_Control_optimized_AES-128_cryptographic_architectures_achieving_942_logic_reduction_and_50_power_savings"},
+ {y:2026,t:"Article",title:"Si-on-SiC MOSFET with dual metal gate and dual high-κ dielectrics for high performance CMOS applications",a:"Fariha Zaman, Md. Mozahidul Islam, Md.Tawfiq Amin",v:"Next Materials",id:"414551130_Si-on-SiC_MOSFET_with_dual_metal_gate_and_dual_high-k_dielectrics_for_high_performance_CMOS_applications"},
+ {y:2026,t:"Article",title:"A comparative logic-style framework for 8-bit 12-function efficient ALU design using transmission gate and NMOS pass transistor logic in 90-nm CMOS",a:"Saquib Farhan, Sadman Rahman, Sunjida Sultana, …, Gourab Datta, Md.Tawfiq Amin",v:"Analog Integrated Circuits and Signal Processing",id:"414372426_A_comparative_logic-style_framework_for_8-Bit_12-function_efficient_ALU_design_using_transmission_gate_and_NMOS_pass_transistor_logic_in_90-nm_CMOS"},
+ {y:2026,t:"Conference Paper",title:"Design and Analysis of Hybrid Transmission Gate–MTCMOS 4:1 Multiplexer for Low-Power Nanoscale Circuits",a:"Md. Mahfuzur Rahman Kabbo, Osama Ahmed Ibrahim, Md. Mozahidul Islam, …, Md.Tawfiq Amin",v:"Conference paper",id:"413698210_Design_and_Analysis_of_Hybrid_Transmission_Gate-MTCMOS_41_Multiplexer_for_Low-Power_Nanoscale_Circuits"},
+ {y:2026,t:"Conference Paper",title:"Design of Wide Tuning Range and Low Power Multiband CMOS Ring VCO for Wireless Personal Communication Systems",a:"Md. Mozahidul Islam, Md.Tawfiq Amin, Fariha Zaman",v:"Conference paper",id:"413698445_Design_of_Wide_Tuning_Range_and_Low_Power_Multiband_CMOS_Ring_VCO_for_Wireless_Personal_Communication_Systems"},
+ {y:2026,t:"Article",title:"Low power and highly stable 10T SRAM cell design using stacked and MTCMOS techniques",a:"Md. Mozahidul Islam, Fariha Zaman, Md.Tawfiq Amin",v:"Analog Integrated Circuits and Signal Processing",id:"405091883_Low_power_and_highly_stable_10_T_SRAM_cell_design_using_stacked_and_MTCMOS_techniques"},
+ {y:2026,t:"Conference Paper",title:"A Low-Power 4-Bit Full Adder Design Using Transmission Gate Logic with LECTOR-Based Leakage Reduction",a:"M Mehedi Hasan, Raisa Ahmed, Nowshin Ferdose, Md.Tawfiq Amin",v:"Conference paper",id:"406966527_A_Low-Power_4-Bit_Full_Adder_Design_Using_Transmission_Gate_Logic_with_LECTOR-Based_Leakage_Reduction"},
+ {y:2026,t:"Article",title:"All transistor compact and power efficient low dropout linear voltage regulator design for RFID transponder",a:"Tasmia Hassan Saika, Tasbih Alam, Sunjida Sultana, Md.Tawfiq Amin",v:"Engineering Research Express",id:"400964346_ALL_TRANSISTOR_COMPACT_AND_POWER_EFFICIENT_LOW_DROPOUT_LINEAR_VOLTAGE_REGULATOR_DESIGN_FOR_RFID_TRANSPONDER"},
+ {y:2025,t:"Conference Paper",title:"A Multi-Metric Comparative Analysis of CMOS Dynamic Latch Comparators Under Voltage Scaling",a:"Susmita Saha, Zuairah Zakir Sarah, Saquib Farhan, Md.Tawfiq Amin",v:"Conference paper",id:"405365886_A_Multi-Metric_Comparative_Analysis_of_CMOS_Dynamic_Latch_Comparators_Under_Voltage_Scaling"},
+ {y:2025,t:"Conference Paper",title:"Design and Performance Analysis of Power-Efficient Compact BCD to Seven Segment Decoder Using Pass Transistor Logic",a:"Saquib Farhan, Tanjida Bintee Jafar, Md.Tawfiq Amin",v:"Conference paper",id:"405366369_Design_and_Performance_Analysis_of_Power-Efficient_Compact_BCD_to_Seven_Segment_Decoder_Using_Pass_Transistor_Logic"},
+ {y:2025,t:"Conference Paper",title:"Mobility Enhancement and Performance Analysis of Single and Dual-Active-Layer Oxide TFTs",a:"Naeem Sarkar, Md.Tawfiq Amin",v:"Conference paper",id:"404608525_Mobility_Enhancement_and_Performance_Analysis_of_Single_and_Dual-Active-Layer_Oxide_TFTs"},
+ {y:2025,t:"Conference Paper",title:"Low-Power LECTOR-Based Current-Starved VCO in 90 nm CMOS for Wireless IoT Networks",a:"Md. Raisul Islam Ratul, Anindya Chanda Tirtha, Md.Tawfiq Amin",v:"Conference paper",id:"406454893_Low-Power_LECTOR-Based_Current-Starved_VCO_in_90_nm_CMOS_for_Wireless_IoT_Networks"},
+ {y:2025,t:"Conference Paper",title:"Comparative Analysis of Configurable Logic Block Using Static CMOS, Transmission Gate and Gate Diffusion Input Techniques",a:"Md Mahidul Haque Mahi, Mahfuzur Rashid, Saquib Farhan, Md.Tawfiq Amin",v:"Conference paper",id:"399574254_Comparative_Analysis_of_Configurable_Logic_Block_Using_Static_CMOS_Transmission_Gate_and_Gate_Diffusion_Input_Techniques"},
+ {y:2025,t:"Preprint",title:"Low Power and Highly Stable 10T SRAM Cell Design Using Stacked and MTCMOS Techniques",a:"Md. Mozahidul Islam, Fariha Zaman, Md.Tawfiq Amin",v:"Preprint",id:"396803358_Low_Power_and_Highly_Stable_10T_SRAM_Cell_Design_Using_Stacked_and_MTCMOS_Techniques"},
+ {y:2025,t:"Conference Paper",title:"A Comparative Analysis on the Design of CMOS SRAM for Key Performance Parameters",a:"Fariha Zaman, Md. Mozahidul Islam, Jahin Shahriar, …, Md.Tawfiq Amin",v:"Conference paper",id:"395974637_A_Comparative_Analysis_on_the_Design_of_CMOS_SRAM_for_Key_Performance_Parameters"},
+ {y:2025,t:"Conference Paper",title:"Wideband and Linear Current Starved VCO with Source Degeneration and Integrated Charge Pump for ADC Front Ends",a:"Md. Mobin Khan, Md. Maruful Islam, Md. Galib Hasan, …, Md.Tawfiq Amin",v:"Conference paper",id:"395975925_Wideband_and_Linear_Current_Starved_VCO_with_Source_Degeneration_and_Integrated_Charge_Pump_for_ADC_Front_Ends"},
+ {y:2025,t:"Conference Paper",title:"Area and Power Efficient 4×4 Approximate Wallace Tree Multiplier Using Pareto-Optimal Adders",a:"Md. Galib Hasan, Md. Maruful Islam, Md. Mobin Khan, …, Md.Tawfiq Amin",v:"Conference paper",id:"395980659_Area_and_Power_Efficient_44_Approximate_Wallace_Tree_Multiplier_Using_Pareto-Optimal_Adders"},
+ {y:2025,t:"Conference Paper",title:"High Speed and Low Power 8-Bit 12-Function ALU Using Transmission Gate Logic in 90nm Technology",a:"Saquib Farhan, Sadman Rahman, Saiba Aabira, …, Md.Tawfiq Amin",v:"Conference paper",id:"395981926_High_Speed_and_Low_Power_8-Bit_12-Function_ALU_Using_Transmission_Gate_Logic_in_90nm_Technology"},
+ {y:2025,t:"Conference Paper",title:"Optimized Multiplexer Architectures: A Hybrid Approach to Low-Power and High-Speed VLSI Design",a:"Susmita Saha, Tanjida Bintee Jafar, Zuairah Zakir Sarah, …, Md.Tawfiq Amin",v:"Conference paper",id:"395982016_Optimized_Multiplexer_Architectures_A_Hybrid_Approach_to_Low-Power_and_High-Speed_VLSI_Design"},
+ {y:2025,t:"Conference Paper",title:"A 100 μA and 688.62 μW High-Performance Charge Pump with Gain-Boosted Low-Voltage Cascode Architecture for PLL Application",a:"Ali Ahmed Afridi, Md.Tawfiq Amin",v:"Conference paper",id:"395983784_A_100mA_and_68862mW_High-Performance_Charge_Pump_with_Gain-Boosted_Low-Voltage_Cascode_Architecture_for_PLL_Application"},
+ {y:2025,t:"Conference Paper",title:"CMOS-Memristor Based LIF & STDP Functions for Spiking Neural Networks Application",a:"Md Mahfuzar Rahman Riad, Md.Tawfiq Amin",v:"Conference paper",id:"395990409_CMOS-Memristor_Based_LIF_STDP_Functions_for_Spiking_Neural_Networks_Application"},
+ {y:2025,t:"Conference Paper",title:"Low Power Low Delay Memristive Inverter Based Logic Gate Design",a:"Md Mahfuzar Rahman Riad, Md.Tawfiq Amin",v:"Conference paper",id:"395990463_Low_Power_Low_Delay_Memristive_Inverter_Based_Logic_Gate_Design"},
+ {y:2025,t:"Conference Paper",title:"Quadrature Clock Generator Based on Folded MCML D-Latch for Half-Rate CDR Applications",a:"Nafiz Bin Hasanat, Mostafa Fareen Tasnim, Anika Tapti, …, Md.Tawfiq Amin",v:"Conference paper",id:"395990716_Quadrature_Clock_Generator_Based_on_Folded_MCML_D-Latch_for_Half-Rate_CDR_Applications"},
+ {y:2024,t:"Article",title:"PlugGuard: A Neural Network-Based Power Quality Control System for Plug Loads",a:"Mohammad Naim Uddin, Hussain Nyeem, Md.Tawfiq Amin",v:"IEEE Transactions on Industrial Informatics",id:"381771292_PlugGuard_A_Neural_Network-Based_Power_Quality_Control_System_for_Plug_Loads"},
+ {y:2024,t:"Conference Paper",title:"Design and Analysis of Low Power Low Noise Graphene MOSFET based VCO for Wireless Applications",a:"Md.Tawfiq Amin et al.",v:"Conference paper",id:"379771550_Design_and_Analysis_of_Low_Power_Low_Noise_Graphene_Mosfet_based_VCO_for_Wireless_Applications"},
+ {y:2024,t:"Conference Paper",title:"Design and Performance Analysis of a Tunable Active Inductor Based Bandpass Filter for X Band Applications in 90 nm CMOS Process",a:"Md.Tawfiq Amin et al.",v:"Conference paper",id:"378201652_Design_and_performance_analysis_of_a_Tunable_Active_Inductor_Based_Bandpass_Filter_for_X_Band_Applications_in_90_nm_CMOS_Process"},
+ {y:2022,t:"Conference Paper",title:"Design and Analysis of Impulse Radio (IR) Based UWB Transmitter with Antenna",a:"Md.Tawfiq Amin et al.",v:"Conference paper",id:"366692181_Design_and_Analysis_of_Impulse_Radio_IR_Based_UWB_Transmitter_with_Antenna"},
+ {y:2022,t:"Conference Paper",title:"Analytical Modeling and Design Optimization of Dual Gated n-channel Graphene MOSFET",a:"Md.Tawfiq Amin et al.",v:"Conference paper",id:"362359476_Analytical_Modeling_and_Design_Optimization_of_Dual_Gated_n-channel_Graphene_MOSFET"},
+ {y:2022,t:"Conference Paper",title:"A Novel Technique of Component Sharing in Analog Integrated Circuits",a:"Md.Tawfiq Amin et al.",v:"Conference paper",id:"359275100_A_Novel_Technique_of_Component_Sharing_in_Analog_Integrated_Circuits"},
+ {y:2021,t:"Conference Paper",title:"A 2-D Double Gate Heterojunction Tunnel-FET Based on AlGaSb/InAs: Analytical Analysis on Electric Field and Capacitance",a:"Md.Tawfiq Amin et al.",v:"Conference paper",id:"357212304_A_2-D_Double_Gate_Heterojunction_Tunnel-FET_Based_on_AlGaSbInAs_Analytical_Analysis_on_Electric_Field_and_Capacitance"},
+ {y:2021,t:"Conference Paper",title:"An Ultra-Low Power Area Efficient Voltage Controlled Oscillator Based on Tunable Active Inductor for Wireless Applications",a:"Md.Tawfiq Amin et al.",v:"Conference paper",id:"352481638_An_Ultra-Low_Power_Area_Efficient_Voltage_Controlled_Oscillator_Based_on_Tunable_Active_Inductor_for_Wireless_Applications"},
+ {y:2021,t:"Conference Paper",title:"A 8.18 GHz – 12.57 GHz Digitally Controlled Quadrature VCO in 90 nm CMOS Process for X Band Applications",a:"Md.Tawfiq Amin et al.",v:"Conference paper",id:"350719462_A_818_GHz_1257_GHz_Digitally_Controlled_Quadrature_VCO_in_90_nm_CMOS_Process_for_X_Band_Applications"}
+];
+
+const ALUMNI = [
+ ["Lamiya Mahbub","https://i1.rgstatic.net/ii/profile.image/11431281779762328-1765352406072_Q128/Lamiya-Mahbub.jpg","TFET gate-stack engineering"],
+ ["Md Mahfuzar Rahman Riad","https://i1.rgstatic.net/ii/profile.image/11431281227894451-1709784959170_Q128/Md-Mahfuzar-Rahman-Riad.jpg","Memristor & neuromorphic circuits"],
+ ["Md. Raisul Islam Ratul","https://i1.rgstatic.net/ii/profile.image/11431281241992153-1715276532677_Q128/Md-Raisul-Ratul.jpg","Low-power VCO design"],
+ ["Anindya Chanda Tirtha","https://i1.rgstatic.net/ii/profile.image/11431281501492315-1750011998062_Q128/Anindya-Tirtha.jpg","Low-power VCO design"],
+ ["Md Mahidul Haque Mahi","https://i1.rgstatic.net/ii/profile.image/11431282493682488-1793340338476_Q128/Md-Mahidul-Mahi.jpg","Configurable logic blocks"],
+ ["Naeem Sarkar","https://i1.rgstatic.net/ii/profile.image/11431282142631826-1779636609530_Q128/Naeem-Sarkar.jpg","Oxide thin-film transistors"],
+ ["Tasmia Hassan Saika","","LDO regulator for RFID"],
+ ["M. Mehedi Hasan","","AES hardware & full adders"],
+ ["Raisa Ahmed","","AES hardware & full adders"],
+ ["Saquib Farhan","","ALU & decoder design"],
+ ["Sunjida Sultana","","ALU & LDO design"],
+ ["Aniqa Ibnat","","AVRC member"],
+ ["Nargis Akhter","","AVRC member"],
+ ["Md. Mahidul Haque","","Deep-learning circuit analysis"],
+ ["Asha Basak","","AVRC member"]
+];
+
+// ---------- RENDER ----------
+const initials = n => n.replace(/^(Md\.?|M\.)\s*/i,"").split(/\s+/).filter(Boolean).slice(0,2).map(s=>s[0]).join("").toUpperCase();
+function avatarFallback(img){ const d=img.parentNode; d.textContent=d.dataset.i||""; }
+document.querySelectorAll('.avatar img').forEach(i=>{i.onerror=()=>avatarFallback(i); if(i.complete&&i.naturalWidth===0)avatarFallback(i);});
+
+document.getElementById('alumni').innerHTML = ALUMNI.map(([n,img,topic])=>`
+  <div class="alum"><div class="avatar" data-i="${initials(n)}">${img?`<img src="${img}" alt="${n}" onerror="avatarFallback(this)">`:initials(n)}</div>
+  <div><b>${n}</b><span>${topic}</span></div></div>`).join("");
+
+const hl = a => LAB.reduce((s,n)=>s.split(n).join(`<span class="me">${n}</span>`), a);
+let filter="all";
+function renderPubs(){
+  const q=document.getElementById('q').value.toLowerCase();
+  const list=PUBS.filter(p=>(filter==="all"||p.t===filter)&&(p.title+p.a+p.v).toLowerCase().includes(q));
+  document.getElementById('pubs').innerHTML = list.length ? list.map(p=>`
+    <div class="pub"><div><span class="yr">${p.y}</span><span class="type">${p.t==="Article"?"Journal":p.t==="Preprint"?"Preprint":"Conference"}</span></div>
+    <div><h4><a href="${RG+p.id}" target="_blank" rel="noopener">${p.title}</a></h4>
+    <div class="auth">${hl(p.a)}</div>${p.t==="Article"?`<div class="venue">${p.v}</div>`:""}</div></div>`).join("")
+    : '<p style="color:var(--muted)">No publications match your search.</p>';
+}
+document.getElementById('q').addEventListener('input',renderPubs);
+document.querySelectorAll('.fbtn').forEach(b=>b.onclick=()=>{document.querySelectorAll('.fbtn').forEach(x=>x.classList.remove('on'));b.classList.add('on');filter=b.dataset.f;renderPubs();});
+renderPubs();
+document.getElementById('y').textContent=new Date().getFullYear();
+document.querySelectorAll('.links a').forEach(a=>a.onclick=()=>document.querySelector('.links').classList.remove('open'));
+
+// reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// circuit-trace hero animation
+(function(){
+  const c=document.getElementById('traces'),x=c.getContext('2d');let W,H,paths=[],t=0;
+  function build(){W=c.width=c.offsetWidth*devicePixelRatio;H=c.height=c.offsetHeight*devicePixelRatio;paths=[];
+    const g=34*devicePixelRatio;for(let i=0;i<46;i++){let px=Math.round(Math.random()*W/g)*g,py=Math.round(Math.random()*H/g)*g;const p=[[px,py]];
+      for(let k=0;k<5+Math.random()*6;k++){const d=Math.floor(Math.random()*4);const L=g*(1+Math.floor(Math.random()*4));
+        if(d===0)px+=L;else if(d===1)px-=L;else if(d===2)py+=L;else py-=L;p.push([px,py]);}
+      paths.push({p,o:Math.random()*100});}}
+  function draw(){x.clearRect(0,0,W,H);x.lineWidth=1.2*devicePixelRatio;
+    paths.forEach(({p,o})=>{x.strokeStyle='rgba(143,227,220,.18)';x.beginPath();p.forEach(([a,b],i)=>i?x.lineTo(a,b):x.moveTo(a,b));x.stroke();
+      x.fillStyle='rgba(143,227,220,.5)';const [ex,ey]=p[p.length-1];x.beginPath();x.arc(ex,ey,2.4*devicePixelRatio,0,7);x.fill();
+      const seg=Math.floor(((t+o)/40)%(p.length-1)),f=((t+o)/40)%1;const [a1,b1]=p[seg],[a2,b2]=p[seg+1];
+      x.fillStyle='rgba(227,165,43,.9)';x.beginPath();x.arc(a1+(a2-a1)*f,b1+(b2-b1)*f,2*devicePixelRatio,0,7);x.fill();});
+    t+=1;requestAnimationFrame(draw);}
+  build();addEventListener('resize',build);
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches)draw();else{t=0;draw=()=>{};}
+})();
+</script>
+</body>
+</html>
