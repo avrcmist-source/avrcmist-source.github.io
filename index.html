@@ -27,10 +27,15 @@ img{max-width:100%;display:block}
 
 /* NAV */
 header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav .wrap{display:flex;align-items:center;gap:8px;height:68px}
 .brand{display:flex;align-items:center;gap:10px;color:var(--ink);font-family:"Space Grotesk";font-weight:700;font-size:20px;letter-spacing:.5px}
 .brand img{width:44px;height:44px;border-radius:8px}
 .brand small{display:block;font-family:Inter;font-weight:500;font-size:11px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase}
+.inst{display:flex;align-items:center;gap:8px;padding-left:14px;margin-left:6px;border-left:1px solid var(--line);margin-right:auto;font-size:12px;font-weight:600;color:var(--muted);letter-spacing:1px}
+.inst img{height:40px;width:auto}
+.affil{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}
+.affil img{height:64px;width:auto}
+.affil span{font-size:12.5px;color:#c6d0ea;line-height:1.4;text-align:left}
 .links{display:flex;gap:4px;list-style:none}
 .links a{display:block;padding:8px 12px;border-radius:8px;font-size:14.5px;font-weight:500;color:var(--text)}
 .links a:hover{background:var(--bg);color:var(--navy)}
@@ -98,7 +103,8 @@ section.alt{background:var(--bg)}
 
 /* HEAD */
 .head-card{display:grid;grid-template-columns:300px 1fr;gap:44px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:40px;box-shadow:var(--shadow)}
-.head-photo{border-radius:18px;overflow:hidden;aspect-ratio:1;background:var(--bg)}
+.head-photo{border-radius:18px;overflow:hidden;aspect-ratio:1;background:linear-gradient(160deg,#e7eefb 0%,#cfdcf3 100%)}
+.head-photo img{object-position:center top}
 .head-photo img{width:100%;height:100%;object-fit:cover}
 .head-side .links-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .pill{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:7px 12px;border-radius:8px;background:var(--bg);border:1px solid var(--line)}
@@ -197,6 +203,7 @@ footer .brand{color:#fff}
   .burger{display:block}
 }
 @media (max-width:620px){
+  .inst span{display:none}
   .areas{grid-template-columns:1fr}
   .member.big{grid-template-columns:1fr;text-align:center}
   .member.big .avatar{margin:0 auto}
@@ -210,6 +217,7 @@ footer .brand{color:#fff}
 <header class="nav">
   <div class="wrap">
     <a href="#home" class="brand"><img data-logo src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="AVRC logo"><div>AVRC<small>Advanced VLSI Research Center</small></div></a>
+    <a class="inst" href="https://mist.ac.bd/" target="_blank" rel="noopener" title="Military Institute of Science and Technology"><img src="images/logos/mist-logo.webp" alt="MIST logo"><img src="images/logos/eece-logo.webp" alt="Department of EECE logo"><span>EECE · MIST</span></a>
     <button class="burger" aria-label="Menu" onclick="document.querySelector('.links').classList.toggle('open')"><span></span><span></span><span></span></button>
     <ul class="links">
       <li><a href="#about">About</a></li>
@@ -246,6 +254,7 @@ footer .brand{color:#fff}
         <div class="stat"><b>15+</b><span>Researchers & students</span></div>
         <div class="stat"><b>1</b><span>ICT Division funded project</span></div>
       </div>
+      <div class="affil"><img src="images/logos/mist-logo.webp" alt="MIST"><img src="images/logos/eece-logo.webp" alt="Department of EECE"><span>Department of EECE<br><b style="color:#fff">Military Institute of Science and Technology</b></span></div>
     </div>
   </div>
 </section>
@@ -323,7 +332,7 @@ footer .brand{color:#fff}
     </div>
     <div class="head-card reveal">
       <div class="head-side">
-        <div class="head-photo"><img src="https://i1.rgstatic.net/ii/profile.image/983559674277889-1611510308610_Q512/Mdtawfiq-Amin-2.jpg" alt="Lt Col Md Tawfiq Amin" onerror="this.parentNode.innerHTML='<div class=avatar style=width:100%;height:100%;border-radius:0;font-size:80px>TA</div>'"></div>
+        <div class="head-photo"><img src="images/people/tawfiq-amin.webp" alt="Lt Col Md Tawfiq Amin" onerror="this.parentNode.innerHTML='<div class=avatar style=width:100%;height:100%;border-radius:0;font-size:80px>TA</div>'"></div>
         <div class="links-row">
           <a class="pill" href="https://www.researchgate.net/profile/Mdtawfiq-Amin-2" target="_blank" rel="noopener">ResearchGate ↗</a>
           <a class="pill" href="https://mist.ac.bd/department/electrical_electronic_and_communication_engineering/faculty-members/lt-col-md-tawfiq-amin-phd-eme" target="_blank" rel="noopener">MIST profile ↗</a>
@@ -368,7 +377,7 @@ footer .brand{color:#fff}
       <h3>Co-Founder &amp; Research Assistants</h3>
       <div class="team featured">
         <div class="member big">
-          <div class="avatar" data-i="MI"><img src="https://i1.rgstatic.net/ii/profile.image/11431281641031751-1758295684183_Q512/Md-Mozahidul-Islam-7.jpg" alt="Md. Mozahidul Islam"></div>
+          <div class="avatar" data-i="MI"><img src="images/people/mozahidul-islam.webp" alt="Md. Mozahidul Islam"></div>
           <div>
             <h4>Md. Mozahidul Islam</h4>
             <div class="pos">Co-Founder · Research Assistant</div>
@@ -377,7 +386,7 @@ footer .brand{color:#fff}
           </div>
         </div>
         <div class="member big">
-          <div class="avatar" data-i="FZ"><img src="https://i1.rgstatic.net/ii/profile.image/11431282415528011-1790061289960_Q512/Fariha-Zaman-7.jpg" alt="Fariha Zaman"></div>
+          <div class="avatar" data-i="FZ"><img src="images/people/fariha-zaman.webp" alt="Fariha Zaman"></div>
           <div>
             <h4>Fariha Zaman</h4>
             <div class="pos">Research Assistant</div>
@@ -392,7 +401,7 @@ footer .brand{color:#fff}
       <h3>Undergraduate Thesis Students (current)</h3>
       <div class="team">
         <div class="member">
-          <div class="avatar" data-i="MK"><img src="https://i1.rgstatic.net/ii/profile.image/11431282496957854-1793466432709_Q512/Md-Mahfuzur-Kabbo.jpg" alt="Md. Mahfuzur Rahman Kabbo"></div>
+          <div class="avatar" data-i="MK"><img src="images/people/mahfuzur-kabbo.webp" alt="Md. Mahfuzur Rahman Kabbo"></div>
           <h4>Md. Mahfuzur Rahman Kabbo</h4>
           <div class="pos">Undergraduate Thesis Student, EECE</div>
           <p>Topology-aware HVT MTCMOS power gating for cascaded transmission-gate MUX/DEMUX (<i>Discover Electronics</i>, 2026).</p>
@@ -476,6 +485,7 @@ footer .brand{color:#fff}
 <footer>
   <div class="wrap">
     <a href="#home" class="brand"><img data-logo src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="" style="width:36px;height:36px;border-radius:6px">AVRC · MIST</a>
+    <span style="display:flex;gap:12px;align-items:center"><img src="images/logos/mist-logo.webp" alt="MIST" style="height:46px"><img src="images/logos/eece-logo.webp" alt="Department of EECE" style="height:46px"></span>
     <div>© <span id="y"></span> Advanced VLSI Research Center, Department of EECE, MIST. All rights reserved.</div>
   </div>
 </footer>
@@ -523,17 +533,17 @@ const PUBS = [
 ];
 
 const ALUMNI = [
- ["Lamiya Mahbub","https://i1.rgstatic.net/ii/profile.image/11431281779762328-1765352406072_Q128/Lamiya-Mahbub.jpg","TFET gate-stack engineering"],
- ["Md Mahfuzar Rahman Riad","https://i1.rgstatic.net/ii/profile.image/11431281227894451-1709784959170_Q128/Md-Mahfuzar-Rahman-Riad.jpg","Memristor & neuromorphic circuits"],
- ["Md. Raisul Islam Ratul","https://i1.rgstatic.net/ii/profile.image/11431281241992153-1715276532677_Q128/Md-Raisul-Ratul.jpg","Low-power VCO design"],
- ["Anindya Chanda Tirtha","https://i1.rgstatic.net/ii/profile.image/11431281501492315-1750011998062_Q128/Anindya-Tirtha.jpg","Low-power VCO design"],
- ["Md Mahidul Haque Mahi","https://i1.rgstatic.net/ii/profile.image/11431282493682488-1793340338476_Q128/Md-Mahidul-Mahi.jpg","Configurable logic blocks"],
- ["Naeem Sarkar","https://i1.rgstatic.net/ii/profile.image/11431282142631826-1779636609530_Q128/Naeem-Sarkar.jpg","Oxide thin-film transistors"],
+ ["Lamiya Mahbub","images/people/lamiya-mahbub.webp","TFET gate-stack engineering"],
+ ["Md Mahfuzar Rahman Riad","images/people/mahfuzar-riad.webp","Memristor & neuromorphic circuits"],
+ ["Md. Raisul Islam Ratul","images/people/raisul-ratul.webp","Low-power VCO design"],
+ ["Anindya Chanda Tirtha","images/people/anindya-tirtha.webp","Low-power VCO design"],
+ ["Md Mahidul Haque Mahi","images/people/mahidul-mahi.webp","Configurable logic blocks"],
+ ["Naeem Sarkar","images/people/naeem-sarkar.webp","Oxide thin-film transistors"],
  ["Tasmia Hassan Saika","","LDO regulator for RFID"],
  ["M. Mehedi Hasan","","AES hardware & full adders"],
  ["Raisa Ahmed","","AES hardware & full adders"],
  ["Saquib Farhan","","ALU & decoder design"],
- ["Sunjida Sultana","","ALU & LDO design"],
+ ["Sunjida Sultana","images/people/sunjida-sultana.webp","ALU & LDO design"],
  ["Aniqa Ibnat","","AVRC member"],
  ["Nargis Akhter","","AVRC member"],
  ["Md. Mahidul Haque","","Deep-learning circuit analysis"],
