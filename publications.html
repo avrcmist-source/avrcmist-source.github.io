@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AVRC Publications</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#16244a;--ink:#0f1830;--muted:#5f6a85;--line:#e3e7f0;--bg:#f6f8fc;--accent:#1aa39a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;color:#2b3550;background:transparent;padding:4px;font-size:15px;line-height:1.5}
+a{color:var(--ink);text-decoration:none}a:hover{color:var(--accent)}
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.tools input{flex:1;min-width:180px;padding:10px 14px;border-radius:9px;border:1px solid var(--line);font:inherit}
+.tools input:focus{outline:2px solid var(--accent);border-color:transparent}
+.f{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:#fff;font:inherit;font-size:13.5px;cursor:pointer}
+.f.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.yrh{font-family:"JetBrains Mono";font-size:13px;color:var(--accent);margin:18px 0 8px;letter-spacing:1px}
+.pub{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:10px}
+.pub:hover{border-color:var(--accent)}
+.pub h4{font-size:15px;font-weight:600;line-height:1.4}
+.t{display:inline-block;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:1px 8px;margin-right:6px;vertical-align:2px}
+.auth{font-size:13px;color:var(--muted);margin-top:4px}
+.me{color:#1f3266;font-weight:600}
+.v{font-size:13px;color:var(--accent);font-style:italic;margin-top:2px}
+.src{font-size:12px;color:var(--muted);margin-top:10px;text-align:center}
+.load{color:var(--muted);padding:20px;text-align:center}
+</style>
+</head>
+<body>
+<div class="tools">
+  <input id="q" type="search" placeholder="Search title, author or venue…">
+  <button class="f on" data-f="all">All</button>
+  <button class="f" data-f="Article">Journal</button>
+  <button class="f" data-f="Conference Paper">Conference</button>
+  <button class="f" data-f="Preprint">Preprint</button>
+</div>
+<div id="list"><p class="load">Loading publications…</p></div>
+<p class="src" id="src"></p>
+<script>
+// Edit this list to change which names are highlighted
+const LAB=["Md. Tawfiq Amin","Md.Tawfiq Amin","Md. Mozahidul Islam","Fariha Zaman","Md. Mahfuzur Rahman Kabbo","Sunjida Sultana","Lamiya Mahbub","Moumita Datta"];
+// OpenAlex author id for Lt Col Md Tawfiq Amin — new papers appear automatically
+const AUTHOR="A5067046274";
+const OA=`https://api.openalex.org/works?filter=author.id:${AUTHOR}&sort=publication_date:desc&per_page=200&select=title,publication_year,type,primary_location,doi,authorships,id&mailto=avrcmist@gmail.com`;
+const type=t=>/conference|proceeding/i.test(t)?"Conference Paper":/preprint|posted/i.test(t)?"Preprint":"Article";
+const authors=a=>{const n=a.map(x=>x.author.display_name);return n.length>6?n.slice(0,5).join(", ")+", …, "+n[n.length-1]:n.join(", ");};
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const hl=a=>LAB.reduce((s,n)=>s.split(n).join(`<span class="me">${n}</span>`),esc(a));
+let ALL=[],filter="all";
+function render(){
+  const q=document.getElementById('q').value.toLowerCase();
+  const L=ALL.filter(p=>(filter==="all"||p.t===filter)&&(p.title+p.a+p.v).toLowerCase().includes(q));
+  let y=null,h="";
+  for(const p of L){ if(p.y!==y){y=p.y;h+=`<div class="yrh">${y}</div>`;}
+    h+=`<div class="pub"><h4><span class="t">${p.t==="Article"?"Journal":p.t==="Preprint"?"Preprint":"Conference"}</span><a href="${p.url}" target="_blank" rel="noopener">${esc(p.title)}</a></h4><div class="auth">${hl(p.a)}</div>${p.v?`<div class="v">${esc(p.v)}</div>`:""}</div>`;}
+  document.getElementById('list').innerHTML=h||'<p class="load">No publications match your search.</p>';
+}
+document.getElementById('q').addEventListener('input',render);
+document.querySelectorAll('.f').forEach(b=>b.onclick=()=>{document.querySelectorAll('.f').forEach(x=>x.classList.remove('on'));b.classList.add('on');filter=b.dataset.f;render();});
+fetch(OA).then(r=>r.json()).then(j=>{
+  const seen=new Set();
+  ALL=(j.results||[]).filter(w=>w.title).map(w=>({y:w.publication_year,t:type(w.type||""),title:w.title.replace(/<[^>]+>/g,""),a:authors(w.authorships||[]),
+    v:(w.primary_location&&w.primary_location.source&&w.primary_location.source.display_name)||"",url:w.doi||(w.primary_location&&w.primary_location.landing_page_url)||w.id}))
+    .filter(p=>{const k=p.title.toLowerCase().replace(/[^a-z0-9]/g,"").slice(0,60);if(seen.has(k))return false;seen.add(k);return true;});
+  render();
+  document.getElementById('src').innerHTML=`${ALL.length} publications · updated automatically from <a href="https://openalex.org/${AUTHOR}" target="_blank" rel="noopener">OpenAlex</a> · <a href="https://www.researchgate.net/profile/Mdtawfiq-Amin-2" target="_blank" rel="noopener">ResearchGate</a>`;
+}).catch(()=>{document.getElementById('list').innerHTML='<p class="load">Could not load publications right now. See <a href="https://www.researchgate.net/profile/Mdtawfiq-Amin-2" target="_blank">ResearchGate</a>.</p>';});
+</script>
+</body>
+</html>

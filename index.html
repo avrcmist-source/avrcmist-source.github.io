@@ -140,6 +140,7 @@ section.alt{background:var(--bg)}
 .alum .avatar{width:46px;height:46px;font-size:16px;margin:0;border-width:2px}
 .alum b{font-size:14px;color:var(--ink);display:block;line-height:1.3}
 .alum span{font-size:12px;color:var(--muted)}
+.empty-note{color:var(--muted);font-size:15px;background:#fff;border:1px dashed var(--line);border-radius:12px;padding:18px 20px}
 
 /* PUBLICATIONS */
 .pub-tools{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;align-items:center}
@@ -159,6 +160,7 @@ section.alt{background:var(--bg)}
 .pub .auth .me{color:var(--navy-2);font-weight:600}
 .pub .venue{font-size:13.5px;color:var(--accent);font-style:italic;margin-top:2px}
 .pub-more{margin-top:24px;text-align:center}
+.pub-src{margin-top:14px;font-size:12.5px;color:var(--muted);text-align:center}
 
 /* FUTURE */
 .future{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
@@ -249,10 +251,10 @@ footer .brand{color:#fff}
     <div class="hero-card">
       <div class="logo"><img data-logo src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="AVRC"></div>
       <div class="stats">
-        <div class="stat"><b>68+</b><span>Publications by lab head</span></div>
-        <div class="stat"><b>280+</b><span>Citations</span></div>
-        <div class="stat"><b>15+</b><span>Researchers & students</span></div>
+        <div class="stat"><b>6</b><span>Research themes</span></div>
+        <div class="stat"><b>20+</b><span>Researchers</span></div>
         <div class="stat"><b>1</b><span>ICT Division funded project</span></div>
+        <div class="stat"><b>EECE</b><span>Dept. of MIST</span></div>
       </div>
       <div class="affil"><img src="images/logos/mist-logo.webp" alt="MIST"><img src="images/logos/eece-logo.webp" alt="Department of EECE"><span>Department of EECE<br><b style="color:#fff">Military Institute of Science and Technology</b></span></div>
     </div>
@@ -267,7 +269,7 @@ footer .brand{color:#fff}
         <span class="tag">// About the lab</span>
         <h2>Silicon, devices and systems — designed in Bangladesh</h2>
       </div>
-      <p>AVRC is a research group in the Department of Electrical, Electronic &amp; Communication Engineering (EECE) at the Military Institute of Science and Technology (MIST), Mirpur Cantonment, Dhaka. Founded and led by <b>Lt Col Md Tawfiq Amin, PhD</b>, the lab brings together faculty, research assistants and undergraduate thesis students around one goal: designing better transistors and circuits for next-generation communication, IoT and biomedical systems.</p>
+      <p>AVRC is a research group in the Department of Electrical, Electronic &amp; Communication Engineering (EECE) at the Military Institute of Science and Technology (MIST), Mirpur Cantonment, Dhaka. Founded and led by <b>Lt Col Md Tawfiq Amin, PhD</b>, the lab brings together faculty, research coordinators, research assistants and student researchers around one goal: designing better transistors and circuits for next-generation communication, IoT and biomedical systems.</p>
       <p>Our work spans the full stack of microelectronics — TCAD simulation of novel semiconductor devices, transistor-level analog/RF and digital circuit design in Cadence Virtuoso, and FPGA / hardware-security architectures. Students at AVRC publish in international journals and IEEE conferences, and many go on to graduate studies abroad.</p>
       <p>Through our <b>“VLSI Research Insights”</b> series on Facebook, we also share accessible, educational content on VLSI fundamentals with the wider student community.</p>
     </div>
@@ -275,7 +277,7 @@ footer .brand{color:#fff}
       <div class="pillar"><div class="ic">01</div><div><h4>Device innovation</h4><p>Wide bandgap (GaN, SiC) and emerging-material transistors via Silvaco ATLAS &amp; COMSOL.</p></div></div>
       <div class="pillar"><div class="ic">02</div><div><h4>Circuit design</h4><p>Low-power, low-noise analog, RF, memory and digital circuits in 45–90 nm CMOS.</p></div></div>
       <div class="pillar"><div class="ic">03</div><div><h4>Intelligent hardware</h4><p>In-memory computing, neuromorphic circuits, ML-assisted design and lightweight cryptography.</p></div></div>
-      <div class="pillar"><div class="ic">04</div><div><h4>Mentorship</h4><p>Hands-on research training for undergraduate thesis students and research assistants.</p></div></div>
+      <div class="pillar"><div class="ic">04</div><div><h4>Mentorship</h4><p>Hands-on research training for senior and junior researchers and research assistants.</p></div></div>
     </div>
   </div>
 </section>
@@ -345,11 +347,6 @@ footer .brand{color:#fff}
         <p class="sub">Associate Professor, Department of EECE, Military Institute of Science and Technology (MIST), Dhaka</p>
         <p>Dr. Md Tawfiq Amin received his Ph.D. from the University of Macau, Macao SAR, China, in Microelectronics (Wireless research line) under the State Key Laboratory of Analog and Mixed-Signal VLSI. He earned his B.Sc. (with highest honors) in Electrical and Electronic Engineering from KUET, Khulna, in 2005, and an M.Phil. in Electronic Engineering from City University of Hong Kong in 2009. He served as a Lecturer in the Department of EEE, KUET (2005–2006), and has been a faculty member of the EECE Department at MIST since 2015.</p>
         <p style="margin-top:12px">His research focuses on low-power, low-noise and low-area analog and RF integrated circuit design for wireless applications, together with semiconductor device modeling and low-power VLSI.</p>
-        <div class="head-stats">
-          <div><b>68</b><span>Publications</span></div>
-          <div><b>283</b><span>Citations</span></div>
-          <div><b>16.8k</b><span>Reads</span></div>
-        </div>
         <h4 style="font-size:16px">Education</h4>
         <ul class="edu">
           <li><span class="yr">2009 – 2015</span><span><b>PhD</b>, Analog &amp; Mixed-Signal VLSI — University of Macau</span></li>
@@ -370,11 +367,48 @@ footer .brand{color:#fff}
     <div class="sec-head reveal">
       <span class="tag">// People</span>
       <h2>Our team</h2>
-      <p>Researchers, research assistants and students who make AVRC.</p>
+      <p>Faculty, research coordinators, research assistants and researchers who make AVRC.</p>
     </div>
 
     <div class="team-group reveal">
-      <h3>Co-Founder, Founding Members &amp; Research Assistants</h3>
+      <h3>Assistant Lab Head</h3>
+      <div class="team featured">
+        <div class="member big">
+          <div class="avatar" data-i="SS"><img src="images/people/sunjida-sultana.webp" alt="Sunjida Sultana"></div>
+          <div>
+            <h4>Sunjida Sultana</h4>
+            <div class="pos">Assistant Lab Head</div>
+            <p>Lecturer, Department of EECE, MIST. Co-author on AVRC work in low-power arithmetic logic (8-bit 12-function ALU) and an all-transistor LDO regulator for RFID transponders.</p>
+            <a class="rg" href="https://www.researchgate.net/profile/Sunjida-Sultana-2" target="_blank" rel="noopener">ResearchGate ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-group reveal">
+      <h3>Research Coordinators</h3>
+      <div class="team featured">
+        <div class="member big">
+          <div class="avatar" data-i="LM"><img src="images/people/lamiya-mahbub.webp" alt="Lamiya Mahbub"></div>
+          <div>
+            <h4>Lamiya Mahbub</h4>
+            <div class="pos">Research Coordinator</div>
+            <p>Lecturer, Department of EECE, MIST (B.Sc. in EECE, MIST, 2024). Works on gate-stack engineering in GaSb/GaAs double-gate TFETs.</p>
+          </div>
+        </div>
+        <div class="member big">
+          <div class="avatar" data-i="MD">MD</div>
+          <div>
+            <h4>Moumita Datta</h4>
+            <div class="pos">Research Coordinator</div>
+            <p>Lecturer, Department of EECE, MIST.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-group reveal">
+      <h3>Research Assistants</h3>
       <div class="team featured">
         <div class="member big">
           <div class="avatar" data-i="MI"><img src="images/people/mozahidul-islam.webp" alt="Md. Mozahidul Islam"></div>
@@ -398,12 +432,12 @@ footer .brand{color:#fff}
     </div>
 
     <div class="team-group reveal">
-      <h3>Undergraduate Thesis Students (current)</h3>
+      <h3>Senior Researchers</h3>
       <div class="team">
         <div class="member">
           <div class="avatar" data-i="MK"><img src="images/people/mahfuzur-kabbo.webp" alt="Md. Mahfuzur Rahman Kabbo"></div>
           <h4>Md. Mahfuzur Rahman Kabbo</h4>
-          <div class="pos">Founding Member · Undergraduate Thesis Student</div>
+          <div class="pos">Founding Member · Senior Researcher</div>
           <p>Topology-aware HVT MTCMOS power gating for cascaded transmission-gate MUX/DEMUX (<i>Discover Electronics</i>, 2026).</p>
           <a class="rg" href="https://www.researchgate.net/profile/Md-Mahfuzur-Kabbo" target="_blank" rel="noopener">ResearchGate ↗</a>
         </div>
@@ -411,7 +445,12 @@ footer .brand{color:#fff}
     </div>
 
     <div class="team-group reveal">
-      <h3>Alumni &amp; Former Undergraduate Researchers</h3>
+      <h3>Junior Researchers</h3>
+      <p class="empty-note">New junior researchers will be listed here. MIST students interested in VLSI research are welcome to <a href="#contact">get in touch</a>.</p>
+    </div>
+
+    <div class="team-group reveal">
+      <h3>Former Researchers</h3>
       <div class="alumni" id="alumni"></div>
     </div>
   </div>
@@ -422,8 +461,8 @@ footer .brand{color:#fff}
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="tag">// Publications</span>
-      <h2>Selected publications</h2>
-      <p>Recent journal articles and conference papers from AVRC. Names of lab members are highlighted.</p>
+      <h2>Publications</h2>
+      <p>Journal articles and conference papers from AVRC, updated automatically as new papers are indexed. Names of lab members are highlighted.</p>
     </div>
     <div class="pub-tools">
       <input id="q" type="search" placeholder="Search title, author or venue…">
@@ -433,6 +472,7 @@ footer .brand{color:#fff}
       <button class="fbtn" data-f="Preprint">Preprint</button>
     </div>
     <div class="pubs" id="pubs"></div>
+    <p class="pub-src" id="pubsrc"></p>
     <div class="pub-more"><a class="btn btn-primary" href="https://www.researchgate.net/profile/Mdtawfiq-Amin-2" target="_blank" rel="noopener">Full list on ResearchGate ↗</a></div>
   </div>
 </section>
@@ -494,7 +534,7 @@ footer .brand{color:#fff}
 const LOGO="data:image/jpeg;base64,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";
 document.querySelectorAll("img[data-logo]").forEach(i=>i.src=LOGO);document.getElementById("fav").href=LOGO;
 // ---------- DATA ----------
-const LAB = ["Md.Tawfiq Amin","Md. Mozahidul Islam","Fariha Zaman","Md. Mahfuzur Rahman Kabbo"];
+const LAB = ["Md.Tawfiq Amin","Md. Tawfiq Amin","Md. Mozahidul Islam","Fariha Zaman","Md. Mahfuzur Rahman Kabbo","Sunjida Sultana","Lamiya Mahbub","Moumita Datta"];
 const RG = "https://www.researchgate.net/publication/";
 const PUBS = [
  {y:2026,t:"Article",title:"Topology-aware HVT MTCMOS power gating for power–delay optimization of cascaded transmission-gate MUX and DEMUX",a:"Md. Mahfuzur Rahman Kabbo, Md.Tawfiq Amin",v:"Discover Electronics",id:"416602353_Topology-aware_HVT_MTCMOS_power_gating_for_power-delay_optimization_of_cascaded_transmission-gate_MUX_and_DEMUX"},
@@ -533,7 +573,6 @@ const PUBS = [
 ];
 
 const ALUMNI = [
- ["Lamiya Mahbub","images/people/lamiya-mahbub.webp","TFET gate-stack engineering"],
  ["Md Mahfuzar Rahman Riad","images/people/mahfuzar-riad.webp","Memristor & neuromorphic circuits"],
  ["Md. Raisul Islam Ratul","images/people/raisul-ratul.webp","Low-power VCO design"],
  ["Anindya Chanda Tirtha","images/people/anindya-tirtha.webp","Low-power VCO design"],
@@ -543,7 +582,6 @@ const ALUMNI = [
  ["M. Mehedi Hasan","","AES hardware & full adders"],
  ["Raisa Ahmed","","AES hardware & full adders"],
  ["Saquib Farhan","","ALU & decoder design"],
- ["Sunjida Sultana","images/people/sunjida-sultana.webp","ALU & LDO design"],
  ["Aniqa Ibnat","","AVRC member"],
  ["Nargis Akhter","","AVRC member"],
  ["Md. Mahidul Haque","","Deep-learning circuit analysis"],
@@ -561,15 +599,29 @@ document.getElementById('alumni').innerHTML = ALUMNI.map(([n,img,topic])=>`
 
 const hl = a => LAB.reduce((s,n)=>s.split(n).join(`<span class="me">${n}</span>`), a);
 let filter="all";
+let LIST=PUBS.map(p=>({...p,url:RG+p.id}));
 function renderPubs(){
   const q=document.getElementById('q').value.toLowerCase();
-  const list=PUBS.filter(p=>(filter==="all"||p.t===filter)&&(p.title+p.a+p.v).toLowerCase().includes(q));
+  const list=LIST.filter(p=>(filter==="all"||p.t===filter)&&(p.title+p.a+p.v).toLowerCase().includes(q));
   document.getElementById('pubs').innerHTML = list.length ? list.map(p=>`
     <div class="pub"><div><span class="yr">${p.y}</span><span class="type">${p.t==="Article"?"Journal":p.t==="Preprint"?"Preprint":"Conference"}</span></div>
-    <div><h4><a href="${RG+p.id}" target="_blank" rel="noopener">${p.title}</a></h4>
-    <div class="auth">${hl(p.a)}</div>${p.t==="Article"?`<div class="venue">${p.v}</div>`:""}</div></div>`).join("")
+    <div><h4><a href="${p.url}" target="_blank" rel="noopener">${p.title}</a></h4>
+    <div class="auth">${hl(p.a)}</div>${p.v&&p.v!=="Conference paper"&&p.v!=="Preprint"?`<div class="venue">${p.v}</div>`:""}</div></div>`).join("")
     : '<p style="color:var(--muted)">No publications match your search.</p>';
 }
+// Live publications from OpenAlex (author A5067046274 = Md. Tawfiq Amin)
+const OA="https://api.openalex.org/works?filter=author.id:A5067046274&sort=publication_date:desc&per_page=200&select=title,publication_year,type,primary_location,doi,authorships,id&mailto=avrcmist@gmail.com";
+const oaType=t=>/conference|proceeding/i.test(t)?"Conference Paper":/preprint|posted/i.test(t)?"Preprint":"Article";
+const oaAuthors=a=>{const n=a.map(x=>x.author.display_name);return n.length>6?n.slice(0,5).join(", ")+", …, "+n[n.length-1]:n.join(", ");};
+fetch(OA).then(r=>r.json()).then(j=>{
+  const seen=new Set();
+  const live=(j.results||[]).filter(w=>w.title).map(w=>({y:w.publication_year,t:oaType(w.type||""),title:w.title.replace(/<[^>]+>/g,""),
+    a:oaAuthors(w.authorships||[]),v:(w.primary_location&&w.primary_location.source&&w.primary_location.source.display_name)||"",
+    url:w.doi||(w.primary_location&&w.primary_location.landing_page_url)||w.id}))
+    .filter(p=>{const k=p.title.toLowerCase().replace(/[^a-z0-9]/g,"").slice(0,60);if(seen.has(k))return false;seen.add(k);return true;});
+  if(live.length){LIST=live;renderPubs();
+    document.getElementById('pubsrc').innerHTML=`${live.length} publications · updated automatically from <a href="https://openalex.org/A5067046274" target="_blank" rel="noopener">OpenAlex</a>`;}
+}).catch(()=>{});
 document.getElementById('q').addEventListener('input',renderPubs);
 document.querySelectorAll('.fbtn').forEach(b=>b.onclick=()=>{document.querySelectorAll('.fbtn').forEach(x=>x.classList.remove('on'));b.classList.add('on');filter=b.dataset.f;renderPubs();});
 renderPubs();
