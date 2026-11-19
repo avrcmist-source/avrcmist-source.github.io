@@ -133,6 +133,9 @@ section.alt{background:var(--bg)}
 .member h4{font-size:17px}
 .member .pos{font-size:13px;color:var(--accent);font-weight:600;margin:4px 0 8px}
 .member p{font-size:13.5px;color:var(--muted)}
+.member .mchips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:6px 0 10px}
+.member .mrow{text-align:left;margin-top:6px}
+.member .mrow b{color:var(--navy);font-weight:600}
 .member .rg{display:inline-block;margin-top:12px;font-size:13px;font-weight:600}
 .member.big{grid-column:span 1;text-align:left;display:grid;grid-template-columns:112px 1fr;gap:20px;align-items:start}
 .member.big .avatar{margin:0}
@@ -443,8 +446,51 @@ footer .brand{color:#fff}
           <div class="avatar" data-i="MK"><img src="images/people/mahfuzur-kabbo.webp" alt="Md. Mahfuzur Rahman Kabbo"></div>
           <h4>Md. Mahfuzur Rahman Kabbo</h4>
           <div class="pos">Founding Member · Senior Researcher</div>
-          <p>Topology-aware HVT MTCMOS power gating for cascaded transmission-gate MUX/DEMUX (<i>Discover Electronics</i>, 2026).</p>
+          <div class="mchips"><span class="chip">VLSI Design</span><span class="chip">Cadence Virtuoso</span></div>
+          <p class="mrow"><b>Thesis:</b> SRAM-based in-memory computation</p>
+          <p class="mrow"><b>Future focus:</b> VLSI design, machine-learning-assisted circuit design</p>
+          <p class="mrow">Co-author of topology-aware HVT MTCMOS power gating for cascaded transmission-gate MUX/DEMUX (<i>Discover Electronics</i>, 2026).</p>
           <a class="rg" href="https://www.researchgate.net/profile/Md-Mahfuzur-Kabbo" target="_blank" rel="noopener">ResearchGate ↗</a>
+        </div>
+        <div class="member">
+          <div class="avatar" data-i="AH"><img src="images/people/afif-hossain.webp" alt="Md Afif Hossain"></div>
+          <h4>Md Afif Hossain</h4>
+          <div class="pos">Senior Researcher</div>
+          <div class="mchips"><span class="chip">VLSI Design</span><span class="chip">Cadence Virtuoso</span></div>
+          <p class="mrow"><b>Thesis:</b> Low-cost true random number generator and validation system on FPGA</p>
+          <p class="mrow"><b>Future focus:</b> RF and analog design</p>
+        </div>
+        <div class="member">
+          <div class="avatar" data-i="HR"><img src="images/people/hasinur-rahman.webp" alt="Md Hasinur Rahman Hasin"></div>
+          <h4>Md Hasinur Rahman Hasin</h4>
+          <div class="pos">Senior Researcher</div>
+          <div class="mchips"><span class="chip">VLSI Design</span><span class="chip">Cadence Virtuoso</span></div>
+          <p class="mrow"><b>Thesis:</b> An artifact-audited FPGA ring-oscillator PUF</p>
+          <p class="mrow"><b>Future focus:</b> Underwater robotics, FPGA, embedded electronics and autonomous systems</p>
+        </div>
+        <div class="member">
+          <div class="avatar" data-i="RC"><img src="images/people/ruzaina-chowdhury.webp" alt="Ruzaina Labiba Chowdhury"></div>
+          <h4>Ruzaina Labiba Chowdhury</h4>
+          <div class="pos">Senior Researcher</div>
+          <div class="mchips"><span class="chip">VLSI Design</span><span class="chip">Cadence Virtuoso</span></div>
+          <p class="mrow"><b>Thesis:</b> Sensitivity and non-ideal issues analysis of a dielectric-modulated electrically doped junctionless TFET-based label-free biosensor</p>
+          <p class="mrow"><b>Future focus:</b> Semiconductor devices and nanoelectronics, VLSI and circuit design</p>
+        </div>
+        <div class="member">
+          <div class="avatar" data-i="SZ"><img src="images/people/sarah-zahin.webp" alt="Sarah Zahin"></div>
+          <h4>Sarah Zahin</h4>
+          <div class="pos">Senior Researcher</div>
+          <div class="mchips"><span class="chip">Semiconductor Device Modelling</span><span class="chip">Silvaco TCAD</span></div>
+          <p class="mrow"><b>Thesis:</b> Design and analysis of a dopingless dielectric-modulated junction tunnel FET for label-free detection of biomolecules</p>
+          <p class="mrow"><b>Future focus:</b> Device and structure optimization, circuit-level integration, semiconductor device modelling</p>
+        </div>
+        <div class="member">
+          <div class="avatar" data-i="SZ"><img src="images/people/shihab-zaman.webp" alt="Shihab Zaman"></div>
+          <h4>Shihab Zaman</h4>
+          <div class="pos">Senior Researcher</div>
+          <div class="mchips"><span class="chip">VLSI Design</span><span class="chip">Cadence Virtuoso</span></div>
+          <p class="mrow"><b>Thesis:</b> Comparative analysis and hybridization of low-power technology</p>
+          <p class="mrow"><b>Future focus:</b> Finding the best possible low-power MOSFET</p>
         </div>
       </div>
     </div>
@@ -539,7 +585,7 @@ footer .brand{color:#fff}
 const LOGO="data:image/jpeg;base64,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";
 document.querySelectorAll("img[data-logo]").forEach(i=>i.src=LOGO);document.getElementById("fav").href=LOGO;
 // ---------- DATA ----------
-const LAB = ["Md.Tawfiq Amin","Md. Tawfiq Amin","Md. Mozahidul Islam","Fariha Zaman","Md. Mahfuzur Rahman Kabbo","Sunjida Sultana","Lamiya Mahbub","Moumita Datta"];
+const LAB = ["Md.Tawfiq Amin","Md. Tawfiq Amin","Md. Mozahidul Islam","Fariha Zaman","Md. Mahfuzur Rahman Kabbo","Sunjida Sultana","Lamiya Mahbub","Moumita Datta","Afif Hossain","Hasinur Rahman","Ruzaina Labiba Chowdhury","Sarah Zahin","Shihab Zaman"];
 const RG = "https://www.researchgate.net/publication/";
 const PUBS = [
  {y:2026,t:"Article",title:"Topology-aware HVT MTCMOS power gating for power–delay optimization of cascaded transmission-gate MUX and DEMUX",a:"Md. Mahfuzur Rahman Kabbo, Md.Tawfiq Amin",v:"Discover Electronics",id:"416602353_Topology-aware_HVT_MTCMOS_power_gating_for_power-delay_optimization_of_cascaded_transmission-gate_MUX_and_DEMUX"},
