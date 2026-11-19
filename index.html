@@ -117,6 +117,8 @@ section.alt{background:var(--bg)}
 .edu{list-style:none;display:grid;gap:12px;margin-top:8px}
 .edu li{display:grid;grid-template-columns:110px 1fr;gap:12px;font-size:14.5px}
 .edu .yr{font-family:"JetBrains Mono";font-size:12.5px;color:var(--accent);padding-top:2px}
+.head-card.second{margin-top:28px;grid-template-columns:220px 1fr;padding:32px}
+.head-card.second .head-main h3{font-size:26px}
 .skills{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
 
 /* TEAM */
@@ -199,6 +201,7 @@ footer .brand{color:#fff}
   .future{grid-template-columns:1fr}
   .team.featured{grid-template-columns:1fr}
   .head-card{padding:28px}
+  .head-card.second{grid-template-columns:1fr;padding:28px}
   .head-photo{max-width:280px}
   .links{display:none;position:absolute;top:68px;left:0;right:0;background:#fff;flex-direction:column;padding:12px 24px;border-bottom:1px solid var(--line)}
   .links.open{display:flex}
@@ -225,7 +228,7 @@ footer .brand{color:#fff}
       <li><a href="#about">About</a></li>
       <li><a href="#research">Research</a></li>
       <li><a href="#project">Project</a></li>
-      <li><a href="#head">Lab Head</a></li>
+      <li><a href="#head">Leadership</a></li>
       <li><a href="#team">Team</a></li>
       <li><a href="#publications">Publications</a></li>
       <li><a href="#future">Future</a></li>
@@ -329,7 +332,7 @@ footer .brand{color:#fff}
 <section id="head" class="alt">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="tag">// Lab head &amp; founder</span>
+      <span class="tag">// Lab head &amp; assistant lab head</span>
       <h2>Leadership</h2>
     </div>
     <div class="head-card reveal">
@@ -358,6 +361,23 @@ footer .brand{color:#fff}
         </div>
       </div>
     </div>
+    <div class="head-card second reveal">
+      <div class="head-side">
+        <div class="head-photo"><img src="images/people/sunjida-sultana.webp" alt="Sunjida Sultana" onerror="this.parentNode.innerHTML='<div class=avatar style=width:100%;height:100%;border-radius:0;font-size:60px>SS</div>'"></div>
+        <div class="links-row">
+          <a class="pill" href="https://www.researchgate.net/profile/Sunjida-Sultana-2" target="_blank" rel="noopener">ResearchGate ↗</a>
+        </div>
+      </div>
+      <div class="head-main">
+        <span class="role">Assistant Lab Head, AVRC</span>
+        <h3>Sunjida Sultana</h3>
+        <p class="sub">Lecturer, Department of EECE, Military Institute of Science and Technology (MIST), Dhaka</p>
+        <p>Her AVRC research includes low-power arithmetic logic (an 8-bit 12-function ALU) and an all-transistor LDO regulator for RFID transponders.</p>
+        <div class="skills">
+          <span class="chip">Low-Power Digital VLSI</span><span class="chip">ALU Design</span><span class="chip">LDO Regulators</span><span class="chip">RFID</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -367,22 +387,7 @@ footer .brand{color:#fff}
     <div class="sec-head reveal">
       <span class="tag">// People</span>
       <h2>Our team</h2>
-      <p>Faculty, research coordinators, research assistants and researchers who make AVRC.</p>
-    </div>
-
-    <div class="team-group reveal">
-      <h3>Assistant Lab Head</h3>
-      <div class="team featured">
-        <div class="member big">
-          <div class="avatar" data-i="SS"><img src="images/people/sunjida-sultana.webp" alt="Sunjida Sultana"></div>
-          <div>
-            <h4>Sunjida Sultana</h4>
-            <div class="pos">Assistant Lab Head</div>
-            <p>Lecturer, Department of EECE, MIST. Co-author on AVRC work in low-power arithmetic logic (8-bit 12-function ALU) and an all-transistor LDO regulator for RFID transponders.</p>
-            <a class="rg" href="https://www.researchgate.net/profile/Sunjida-Sultana-2" target="_blank" rel="noopener">ResearchGate ↗</a>
-          </div>
-        </div>
-      </div>
+      <p>Research coordinators, research assistants and researchers who make AVRC.</p>
     </div>
 
     <div class="team-group reveal">
